@@ -24,6 +24,8 @@ def softmax_accuracy(probs, all_labels):
 
 
 class GCNConv_(GCNConv):
+    supports_edge_weight = True
+    supports_edge_attr = False
     def __init__(self, *args, **kwargs):
         super(GCNConv_, self).__init__(*args, **kwargs)
 
