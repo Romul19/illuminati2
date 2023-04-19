@@ -104,9 +104,9 @@ if __name__ == '__main__':
     datafile='citeseer'; single_label = True # set the datafile and labeltype
     #datafile='ppi'; single_label = False # set the datafile and labeltype
     # citeseer, cora and wiki are single label; PPI and Blogcatalog are multi lable
-    edge_file = os.path.join("/content/drive/MyDrive/RECT/datasets", datafile, "graph.txt")
-    label_file = os.path.join("/content/drive/MyDrive/RECT/datasets", datafile, "group.txt") 
-    feature_file = os.path.join("/content/drive/MyDrive/RECT/datasets", datafile, "feature.txt")    
+    edge_file = os.path.join("./datasets", datafile, "graph.txt")
+    label_file = os.path.join("./datasets", datafile, "group.txt") 
+    feature_file = os.path.join("./datasets", datafile, "feature.txt")    
     X, Y = read_node_label(label_file)
     G = read_graph_as_matrix(nodeids=X, edge_file=edge_file)
     
