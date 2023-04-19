@@ -128,6 +128,9 @@ class GCN(nn.Module):
 
 class GCN_(BasicGNN):
 
+    supports_edge_weight = True
+    supports_edge_attr = False
+
     def init_conv(self, in_channels: int, out_channels: int,
                   **kwargs) -> MessagePassing:
         return GCNConv_(in_channels, out_channels, **kwargs)
