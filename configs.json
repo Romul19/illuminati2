@@ -1,7 +1,7 @@
 {
   "dataset_name": {
     "graph": "bbbp",
-    "node": "citeseer"},
+    "node": "cora"},
 
   "explainer": {
     "mode": 0,
