@@ -117,6 +117,7 @@ if __name__ == '__main__':
     datafile='cora'; single_label = True # set the datafile and labeltype
     #datafile='ppi'; single_label = False # set the datafile and labeltype
     # citeseer, cora and wiki are single label; PPI and Blogcatalog are multi lable
+    model_file = './datasets' + datafile + '.pt'
     edge_file = os.path.join("./datasets", datafile, "graph.txt")
     label_file = os.path.join("./datasets", datafile, "group.txt") 
     feature_file = os.path.join("./datasets", datafile, "feature.txt")    
@@ -143,29 +144,8 @@ if __name__ == '__main__':
     print('------ evaluate RECT ---------')
     res = evaluate_rect(embeds, X_train_idx, X_test_idx, Y_train, Y_test, Y_all=Y)
 
-model_file = './datasets' + datafile + '.pt'
-# dataset = Planetoid(root='./datasets', name=dataset_name, split='public')
-# data = dataset.data
-# feat_norm = NormalizeFeatures()
-# data = feat_norm(data)
-
+dataset = Planetoid(root='./datasets', name=dataset_name, split='public')
 gnn = GCN_(in_channels=dataset.num_node_features, hidden_channels=64, num_layers=2,
            out_channels=dataset.num_classes, jk='last')
-optimizer = torch.optim.Adam(gnn.parameters(), lr=0.01, weight_decay=5e-4)
-# gnn.train()
-
-# for epoch in range(200):
-#     optimizer.zero_grad()
-#     out = gnn(data.x, data.edge_index)
-#     loss = F.cross_entropy(out[data.train_mask], data.y[data.train_mask])
-#     loss.backward()
-#     optimizer.step()
-# gnn.eval()
-# pred = gnn(data.x, data.edge_index)
-# pred = pred.argmax(dim=-1)
-# correct = (pred[data.test_mask] == data.y[data.test_mask]).sum()
-# acc = int(correct) / int(data.test_mask.sum())
-
 print(f'Accuracy: {acc:.4f}')
-
 gnn.save(model_file)
