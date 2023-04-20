@@ -143,7 +143,7 @@ if __name__ == '__main__':
     print('------ evaluate RECT ---------')
     res = evaluate_rect(embeds, X_train_idx, X_test_idx, Y_train, Y_test, Y_all=Y)
 
-model_file = './datasets' + dataset_name + '.pt'
+model_file = './datasets' + datafile + '.pt'
 # dataset = Planetoid(root='./datasets', name=dataset_name, split='public')
 # data = dataset.data
 # feat_norm = NormalizeFeatures()
