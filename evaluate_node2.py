@@ -34,6 +34,7 @@ pred = gnn(data.x, data.edge_index)
 pred = pred.argmax(dim=-1)
 correct = (pred[data.test_mask] == data.y[data.test_mask]).sum()
 acc = int(correct) / int(data.test_mask.sum())
+print(f'Accuracy: {acc:.4f}')
 
 result_path = './node_masks/' + dataset_name + '/'
 test_idx = torch.nonzero(data.test_mask).view(-1)

@@ -7,9 +7,7 @@ from torch_geometric.datasets import Planetoid
 from torch_geometric.transforms import NormalizeFeatures
 from models import GCN_
 from explainer import Explainer
-# from train_node import res
-# from train_node import acc
-# from train_node import evaluate_rect
+
 with open("configs.json") as config_file:
     configs = json.load(config_file)
     explainer_args = configs.get("explainer")
@@ -24,19 +22,6 @@ data = feat_norm(data)
 gnn = GCN_(in_channels=dataset.num_node_features, hidden_channels=64, num_layers=2,
            out_channels=dataset.num_classes, jk='last', normalize=True)
 gnn.load(model_file)
-
-# res = evaluate_rect(embeds, X_train_idx, X_test_idx, Y_train, Y_test, Y_all=Y)
-# global check
-# check = (float(res[1])+float(res[0]))/2
-# acc = check
-# print(res)
-# gnn.eval()
-
-# pred = gnn(data.x, data.edge_index)
-# pred = pred.argmax(dim=-1)
-# correct = (pred[data.test_mask] == data.y[data.test_mask]).sum()
-# acc = int(correct) / int(data.test_mask.sum())
-
 
 results_path = './node_masks/' + dataset_name + '/'
 if not os.path.exists(results_path):
